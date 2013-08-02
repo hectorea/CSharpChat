@@ -59,28 +59,28 @@ namespace com.hectorea.client
             }
         }
 
-        private void client_MessageReceived(string message)
+private void client_MessageReceived(string message)
+{
+    if (InvokeRequired)
+    {
+        Invoke(new MethodInvoker(delegate()
         {
-            if (InvokeRequired)
-            {
-                Invoke(new MethodInvoker(delegate()
-                {
-                    if (txtChat != null)
-                        txtChat.Text = txtChat.Text + Environment.NewLine + " -> " + message;
-
-                    if (lblLastMsg != null)
-                        lblLastMsg.Text = string.Format("Last Message Received at {0}", DateTime.Now.ToShortTimeString());
-                }));
-
-            }
-            else
-            {
+            if (txtChat != null)
                 txtChat.Text = txtChat.Text + Environment.NewLine + " -> " + message;
+
+            if (lblLastMsg != null)
                 lblLastMsg.Text = string.Format("Last Message Received at {0}", DateTime.Now.ToShortTimeString());
+        }));
 
-            }
+    }
+    else
+    {
+        txtChat.Text = txtChat.Text + Environment.NewLine + " -> " + message;
+        lblLastMsg.Text = string.Format("Last Message Received at {0}", DateTime.Now.ToShortTimeString());
 
-        }
+    }
+
+}
 
         private void btnDisconnect_Click(object sender, EventArgs e)
         {

@@ -1,7 +1,7 @@
 ﻿/* 
  * @autor: hectorea
  * @date: 24/07/2013
- * @projet: ChatServer 
+ * @projet: CSharpServer 
  * 
  */
 
